@@ -18,7 +18,7 @@ npm install --save webpremios-app-hook
 
 ### Actions
 
-Actions are simple callback called. A complete list of the default actions list can be found [here](webpremios-app-hook/actions.md)
+Actions are simple callback called. A complete list of the default actions list can be found [here](/actions.md)
 
 ```js
 import { Actions } from 'webpremios-app-hook';
@@ -59,7 +59,7 @@ HookManager.trigger('start');
 ### Filters
 
 Filter are callbacks called if an argument that can be filtered by its hooks.  
-A complete list of the default filter list can be found [here](webpremios-app-hook/filters.md)
+A complete list of the default filter list can be found [here](/filters.md)
 
 ```js
 import { Filters } from 'webpremios-app-hook';
