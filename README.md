@@ -1,6 +1,6 @@
-# WebPrêmios App Hook
+# JSHook
 
-This package is used by LTM to control and inject functionality into a WebPrêmios based app
+It's a simple package to help create and control injected functionality into an javascript application.
 
 
 
@@ -18,7 +18,7 @@ npm install --save webpremios-app-hook
 
 ### Actions
 
-Actions are simple callback called. A complete list of the default actions list can be found [here](/actions.md)
+Actions are simple callbacks called in a convenient moment. A complete list of the default actions can be found [here](/actions.md)
 
 ```js
 import { Actions } from 'webpremios-app-hook';
@@ -58,8 +58,7 @@ HookManager.trigger('start');
 
 ### Filters
 
-Filter are callbacks called if an argument that can be filtered by its hooks.  
-A complete list of the default filter list can be found [here](/filters.md)
+Filters are callbacks called when you need to *filter* the returned argument.  A complete list of the default filters can be found [here](/filters.md)
 
 ```js
 import { Filters } from 'webpremios-app-hook';
@@ -124,7 +123,7 @@ items = HookManager.applyFilter('listMenuBar', items);
 
 #### Actions
 
-Add your own custom action.  
+Adding your own custom action.  
 
 ```js
 import { HookManager } from 'webpremios-app-hook';
@@ -146,7 +145,7 @@ HookManager.trigger('customAction', 'Hell Yeah!');
 
 #### Filters
 
-Add your own custom filter.  
+Adding your own custom filter.  
 
 ```js
 import { HookManager } from 'webpremios-app-hook';
@@ -176,4 +175,4 @@ console.log(message);
 
 # Important
 
-Do not update the arguments directaly when filtering. You should always return a new variable with the changes you want to apply.
+**DO NOT** mutate the original variable directly when filtering. You should always return a new variable with the changes you want to apply.

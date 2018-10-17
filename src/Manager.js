@@ -45,7 +45,6 @@ HookManager.trigger = (groupName, ...args) => {
     return null;
 };
 HookManager.applyFilter = (groupName, subject, ...args) => {
-    debugger;
     if( 'undefined' !== typeof HookManager._groupsList[groupName]) {
         let hookList = HookManager._groupsList[groupName];
         if(Array.isArray(hookList) && hookList.length > 0){
