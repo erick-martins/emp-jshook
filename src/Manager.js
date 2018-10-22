@@ -1,59 +1,79 @@
 import Hook from './Hook';
 
-const HookManager = {};
 
-HookManager._groupsList = [];
+let groupsList = [];
 
-HookManager.__addWithHook = (hook) => {
-    if(hook instanceof Hook && hook.isValid() ) {
-        let groupName = hook.getGroupName();
-        HookManager.__validateGroupName(groupName);
-        HookManager._groupsList[groupName].push(hook);
+
+
+class HookManager {
+
+    static addWithHook(hook) {
+        if(hook instanceof Hook && hook.isValid() ) {
+            let groupName = hook.getGroupName();
+            HookManager.validateGroupName(groupName);
+            groupsList[groupName].push(hook);
+        }
+        return HookManager;
     }
-    return HookManager;
-};
-HookManager.__validateGroupName = (groupName) => {
-    if( 'undefined' == typeof HookManager._groupsList[groupName])
-        HookManager._groupsList[groupName] = [];
-}
-
-
-HookManager.on = (name, callback) => {
-    name = (name || '').split('.');
-    let groupName = name.shift();
-    let namespace = group.join('.');
     
-    let hook = new Hook(groupName, namespace, callback);
-    HookManager.__addWithHook(callback);
-    return HookManager;
-};
-
-HookManager.filter = (group, callback) => {
-    name = (name || '').split('.');
-    let groupName = name.shift();
-    let namespace = group.join('.');
-    
-    let hook = new Hook(groupName, namespace, callback);
-    HookManager.__addWithHook(callback);
-    return HookManager;
-};
-
-HookManager.trigger = (groupName, ...args) => {
-    if( 'undefined' == typeof HookManager._groupsList[groupName]) {
-        HookManager._groupsList[groupName].map( hook => hook.dispatch(...args));
+    static validateGroupName(groupName) {
+        if( 'undefined' == typeof groupsList[groupName])
+            groupsList[groupName] = [];
     }
-    return null;
-};
-HookManager.applyFilter = (groupName, subject, ...args) => {
-    if( 'undefined' !== typeof HookManager._groupsList[groupName]) {
-        let hookList = HookManager._groupsList[groupName];
-        if(Array.isArray(hookList) && hookList.length > 0){
-            hookList.map( hook => {
-                subject = hook.filter(subject, ...args);
-            });
+
+    static on(name, callback) {
+        name = (name || '').split('.');
+        let groupName = name.shift();
+        let namespace = group.join('.');
+        
+        let hook = new Hook(groupName, namespace, callback);
+        HookManager.addWithHook(callback);
+        return HookManager;
+    }
+
+    static filter(group, callback) {
+        name = (name || '').split('.');
+        let groupName = name.shift();
+        let namespace = group.join('.');
+        
+        let hook = new Hook(groupName, namespace, callback);
+        HookManager.addWithHook(callback);
+        return HookManager;
+    }
+
+    static trigger(groupName, ...args) {
+        if( Array.isArray(groupsList[groupName]) ){
+            groupsList[groupName].map( hook => hook.dispatch(...args));
+        }
+        return null;
+    }
+    static applyFilter(groupName, subject, ...args) {
+        if( Array.isArray(groupsList[groupName]) ){
+            let hookList = groupsList[groupName];
+            if(Array.isArray(hookList) && hookList.length > 0){
+                hookList.map( hook => {
+                    subject = hook.filter(subject, ...args);
+                });
+            }
+        }
+        return subject;
+    }
+
+    static destroy(groupName, namespace){
+        if(Array.isArray(groupsList[groupName])){
+            if('undefined' == typeof namespace){
+                delete groupsList[groupName];
+            }else{
+                for(let i=0; i<= groupsList[groupName].length; i++){
+                    if(groupsList[groupName][i].getNamespace() == namespace){
+                        groupsList[groupName].splice(i, 1);
+                    }
+                }
+                groupsList = groupsList.filter(function(){return true;});
+            }
         }
     }
-    return subject;
-};
+
+}
 
 export default HookManager;

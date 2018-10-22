@@ -2,10 +2,31 @@
   "name": "webpremios-app-hook",
   "main": "index.js",
   "description": "The WebPrêmios App Hook Package",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "author": "Erick Martins",
   "license": "LicenseRef-LICENSE",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.6.0",
+    "babel-preset-env": "^1.7.0",
+    "jest": "^23.6.0",
+    "regenerator-runtime": "^0.12.1"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "/node_modules/",
+      "/__tests__/utils/"
+    ],
+    "resetModules": false,
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.js",
+    "timers": "real",
+    "useStderr": false,
+    "verbose": null,
+    "watch": false,
+    "cache": true
   }
 }
