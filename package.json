@@ -1,14 +1,14 @@
 {
-  "name": "js-hook",
+  "name": "emp-jshook",
   "main": "index.js",
   "description": "An JS Hook Package",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "author": "Erick Martins",
   "license": "LicenseRef-LICENSE",
-  "homepage": "https://github.com/erick-martins/webpremios-app-hook#README",
+  "homepage": "https://github.com/erick-martins/emp-jshook#README",
   "repository": {
     "type" : "git",
-    "url" : "https://github.com/erick-martins/webpremios-app-hook.git"
+    "url" : "https://github.com/erick-martins/emp-jshook.git"
   },
   "scripts": {
     "test": "jest"
