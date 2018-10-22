@@ -1,10 +1,15 @@
 {
-  "name": "webpremios-app-hook",
+  "name": "js-hook",
   "main": "index.js",
-  "description": "The WebPrêmios App Hook Package",
-  "version": "0.1.0",
+  "description": "An JS Hook Package",
+  "version": "0.1.1",
   "author": "Erick Martins",
   "license": "LicenseRef-LICENSE",
+  "homepage": "https://github.com/erick-martins/webpremios-app-hook#README",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/erick-martins/webpremios-app-hook.git"
+  },
   "scripts": {
     "test": "jest"
   },
