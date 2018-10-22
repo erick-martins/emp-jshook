@@ -7,7 +7,7 @@ It's a simple package to help create and control injected functionality into an 
 # Installation
 
 ```
-npm install --save webpremios-app-hook
+npm install --save emp-jshook
 ```
 
 
@@ -21,7 +21,7 @@ npm install --save webpremios-app-hook
 Actions are simple callbacks called in a convenient moment. A complete list of the default actions can be found [here](/actions.md)
 
 ```js
-import { Actions } from 'webpremios-app-hook';
+import { Actions } from 'emp-jshook';
 
 // register a 'start' action with 'sample' namespace
 // add add the callback function
@@ -38,7 +38,7 @@ Actions.start('sample')
 ### Dispatching an action
 
 ```js
-import { Actions, HookManager } from 'webpremios-app-hook';
+import { Actions, HookManager } from 'emp-jshook';
 
 // register a 'start' action with 'sample' namespace
 // add the callback function
@@ -64,7 +64,7 @@ Actions.start().dispach();
 Filters are callbacks called when you need to *filter* the returned argument.  A complete list of the default filters can be found [here](/filters.md)
 
 ```js
-import { Filters } from 'webpremios-app-hook';
+import { Filters } from 'emp-jshook';
 import { SomeComponent } from '/path/to/component';
 
 // register a 'listMenuBar' filter with 'sample' namespace
@@ -88,7 +88,7 @@ Filters.listMenuBar('sample')
 ### Filtering
 
 ```js
-import { Filters, HookManager } from 'webpremios-app-hook';
+import { Filters, HookManager } from 'emp-jshook';
 import { SomeComponent } from '/path/to/component';
 
 // register a 'listMenuBar' filter with 'sample' namespace
@@ -131,7 +131,7 @@ Filters.listMenuBar().apply(items);
 Adding your own custom action.  
 
 ```js
-import { Actions, HookManager } from 'webpremios-app-hook';
+import { Actions, HookManager } from 'emp-jshook';
 
 HookManager.on(
     'custom', 		// register a action with 'custom' GroupName,
@@ -162,7 +162,7 @@ Actions.custom('sample').do( message =>{
 Adding your own custom filter.  
 
 ```js
-import { Filters, HookManager } from 'webpremios-app-hook';
+import { Filters, HookManager } from 'emp-jshook';
 
 HookManager.filter(
     'custom', 		// register a action with 'custom' GroupName,
@@ -199,7 +199,7 @@ Filters.custom('sample').do( message => {
 Removing actions and filters.  
 
 ```js
-import { Filters, Actions, HookManager } from 'webpremios-app-hook';
+import { Filters, Actions, HookManager } from 'emp-jshook';
 
 
 // You can destroy it using the constructor helper
