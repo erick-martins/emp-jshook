@@ -51,6 +51,9 @@ Actions.start('sample')
 HookManager.trigger('start');
 // Console: Start hook triggered
 
+// Or just
+Actions.start().dispach();
+
 
 ```
 
@@ -113,6 +116,8 @@ items = HookManager.applyFilter('listMenuBar', items);
 // Now items contains the initial value
 // plus what was add in the filter hook
 
+// Or just
+Filters.listMenuBar().apply(items);
 
 
 ```
@@ -126,7 +131,7 @@ items = HookManager.applyFilter('listMenuBar', items);
 Adding your own custom action.  
 
 ```js
-import { HookManager } from 'webpremios-app-hook';
+import { Actions, HookManager } from 'webpremios-app-hook';
 
 HookManager.on(
     'custom', 		// register a action with 'custom' GroupName,
@@ -139,6 +144,15 @@ HookManager.on(
 HookManager.trigger('customAction', 'Hell Yeah!');
 // Console: Executes customAction here - Hell Yeah!
 
+
+// Or just use actions' create method
+Actions.create('custom');
+// Then use it as a default action
+Actions.custom('sample').do( message =>{
+    console.log(`Executes customAction here - ${message}`);
+});
+
+
 ```
 
 
@@ -148,7 +162,7 @@ HookManager.trigger('customAction', 'Hell Yeah!');
 Adding your own custom filter.  
 
 ```js
-import { HookManager } from 'webpremios-app-hook';
+import { Filters, HookManager } from 'webpremios-app-hook';
 
 HookManager.filter(
     'custom', 		// register a action with 'custom' GroupName,
@@ -166,6 +180,44 @@ message = HookManager.applyFilter('custom', message);
 
 console.log(message);
 // Console: This string was changed by a Custom Filter
+
+
+// Or just use filters' create method
+Filters.create('custom');
+// Then use it as a default filter
+Filters.custom('sample').do( message => {
+    return message + " a Custom Filter";
+});
+
+
+```
+
+
+
+## Destroy
+
+Removing actions and filters.  
+
+```js
+import { Filters, Actions, HookManager } from 'webpremios-app-hook';
+
+
+// You can destroy it using the constructor helper
+Action.start().destroy();
+Filters.listMenuBar().destroy();
+
+// Passing a namespace will only destroy those with passed namespace
+Action.start().destroy('sample');
+Filters.listMenuBar().destroy('sample');
+
+// Using HookManager
+HookManager.destroy('start');
+HookManager.destroy('listMenuBar');
+
+// You can pass a namespace to filter it too
+HookManager.destroy('start', 'sample');
+HookManager.destroy('listMenuBar', 'sample');
+
 
 ```
 
